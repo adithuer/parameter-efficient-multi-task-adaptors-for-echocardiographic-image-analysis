@@ -1,0 +1,9 @@
+project: "PROJECT_NAME"
+config:
+  n_epochs: ${trainer.n_epochs}
+  batch_size: ${batch_size}
+  learning rate: ${trainer.optimizer.lr}
+  criterion: ${trainer.criterion._target_}
+  optimizer: ${trainer.optimizer._target_}
+  model: ${trainer.model._target_}
+  mode: ${trainer.mode}

@@ -1,0 +1,5 @@
+_target_: model.segformer.SegmentationHead
+dim_unified: 256
+n_classes: ${n_classes}
+conv_only: True
+img_size: ${model.img_size}

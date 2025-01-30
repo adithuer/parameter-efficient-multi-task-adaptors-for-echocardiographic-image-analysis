@@ -1,0 +1,4 @@
+_target_: model.classifierHead.ClassifierHead
+dim_in: 2
+dim_out: ${n_classes}
+img_size: 512

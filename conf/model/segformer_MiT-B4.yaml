@@ -1,0 +1,12 @@
+_target_: model.segformer.Segformer
+kernel_size: [7,3,3,3]
+stride : [4,2,2,2]
+padding: [3,1,1,1]
+dim_emb: [64,128,320,512]
+linear_emb: False
+reduction_ratio: [64,16,4,1]
+n_heads: [1,2,5,8]
+expansion_factor: [8, 8, 4, 4]
+conv_only: True
+n_layers: [3,3,27,3]
+dim_unified: 512

@@ -1,0 +1,50 @@
+defaults:
+  - _self_
+  - model: segformer_MiT-B0
+  - dataset: echonet
+  - transform: transform_echonet
+  - wandb: wandb
+
+batch_size: 8
+n_classes: 2
+upload_model: False
+
+model:
+  dim_in: 1  
+  n_classes: ${n_classes}
+  img_size: 512
+
+dataset:
+  n_classes: ${n_classes}
+
+trainer:
+  _target_: train.Trainer
+  n_epochs: 1
+  model: ${model}
+  criterion:
+    _target_: torch.nn.CrossEntropyLoss
+  optimizer:
+    _target_: torch.optim.Adam
+    lr: 1e-3
+    _partial_: true
+  mode: pretrain
+  metric:
+    _target_: util.Metric
+    n_classes: ${n_classes}
+    task: seg
+    _partial_: true
+  eval_metric: dice
+
+dataloader:
+  train:
+    _target_: torch.utils.data.DataLoader
+    batch_size: ${batch_size}
+    shuffle: True
+  val:
+    _target_: torch.utils.data.DataLoader
+    batch_size: ${batch_size}
+    shuffle: True
+  test:
+    _target_: torch.utils.data.DataLoader
+    batch_size: ${batch_size}
+    shuffle: False

@@ -1,0 +1,4 @@
+_target_: dataset.echonetDataset.EchoNetDataset
+path_filelist: PATH
+path_volumelist: PATH
+path_video: PATH

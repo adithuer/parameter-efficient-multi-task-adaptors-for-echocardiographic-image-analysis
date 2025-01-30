@@ -1,0 +1,35 @@
+[project]
+name = "vt1"
+version = "0.1.0"
+description = "Implementation of multi-task adaptors on pretrained model for various downstream tasks with LoRA"
+authors = [
+    {name = "Adrian Thür", email = "adrian.thuer@students.zhaw.ch"},
+]
+requires-python = ">=3.9"
+dependencies = [
+    "hydra-core==1.3.2",
+    "numpy==1.26.3",
+    "omegaconf==2.3.0",
+    "pandas==2.2.3",
+    "peft==0.13.2",
+    "pillow==10.2.0",
+    "pyav>=13.1.0",
+    "scikit-image==0.24.0",
+    "SimpleITK==2.4.0",
+    "torch==2.5.1",
+    "torchaudio==2.5.1",
+    "torchmetrics==1.6.0",
+    "torchvision>=0.20.1",
+    "tqdm>=4.67.0",
+    "wandb>=0.18.7",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "model",
+    "dataset"
+]

@@ -1,0 +1,4 @@
+_target_: dataset.camusDataset.CAMUSDataset
+n_views: 2
+path_splitInfo: PATH
+path_patients: PATH

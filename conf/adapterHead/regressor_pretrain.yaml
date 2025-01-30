@@ -1,0 +1,3 @@
+_target_: model.regressor_v2.Regressor
+dim_in: 1
+img_size: 512

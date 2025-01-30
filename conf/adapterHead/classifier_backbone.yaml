@@ -1,0 +1,4 @@
+_target_: model.classifier.Classifier
+dim_in: 1024
+dim_out: ${n_classes}
+img_size: 128

@@ -1,0 +1,65 @@
+defaults:
+  - _self_
+  - model: segformer_MiT-B0
+  - adapterHead: regressor_v2_backbone
+  - dataset: camus
+  - transform: transform_camus
+  - wandb: wandb
+
+batch_size: 8
+n_classes: 2
+upload_model: True
+
+model:
+  dim_in: 1  
+  n_classes: ${n_classes}
+  img_size: 512
+
+dataset:
+  n_classes: ${n_classes}
+  return_value: age
+
+trainer:
+  _target_: train.Trainer
+  n_epochs: 100
+  model:
+    _target_: model.echocardioAdapter.EchocardioAdapter
+    rank: 2
+    target_modules: ['to_q', 'to_kv', 'to_out']
+    trainable_modules: ['fuse','predict', 'regressor']
+    lora_alpha: 8
+    lora_dropout: 0.0
+    init_lora_weights: True
+    model_mode: backbone
+    adapterHead: ${adapterHead}
+    _partial_: true
+  pretrained_model: ${model}
+  pretrained_model_id: kz0fnf1z
+  mode: lora
+  criterion:
+    _target_: torch.nn.HuberLoss
+  optimizer:
+    _target_: torch.optim.Adam
+    lr: 1e-2
+    _partial_: true
+  metric:
+    _target_: util.Metric
+    n_classes: ${n_classes}
+    task: reg
+    _partial_: true
+  eval_metric: mae
+
+
+dataloader:
+  train:
+    _target_: torch.utils.data.DataLoader
+    batch_size: ${batch_size}
+    shuffle: True
+  val:
+    _target_: torch.utils.data.DataLoader
+    batch_size: ${batch_size}
+    shuffle: True
+  test:
+    _target_: torch.utils.data.DataLoader
+    batch_size: ${batch_size}
+    shuffle: False

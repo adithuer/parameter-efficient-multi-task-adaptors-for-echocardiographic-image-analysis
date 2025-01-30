@@ -1,0 +1,2 @@
+_target_: model.unet.UNet
+dim_base: 64
