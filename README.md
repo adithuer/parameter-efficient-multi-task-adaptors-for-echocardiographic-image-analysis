@@ -20,6 +20,7 @@ A step by step guide that will tell you how to get the development environment u
 $ git clone https://github.com/adithuer/parameter-efficient-multi-task-adaptors-for-echocardiographic-image-analysis.git
 $ cd parameter-efficient-multi-task-adaptors-for-echocardiographic-image-analysis
 $ pip install .
+$ pip install -r requirements.txt
 ```
 
 In addition, create a Weights and Biases project, set the project name to the [configuration file](./conf/wandb/wandb.yaml) and create an environment variable WANDB_KEY for the Weights and Biases key.
